@@ -19,3 +19,28 @@ Viss projekts ir sadalīts posmos, katra posma sākuma stāvoklis ir zars (branc
 Katrā posmā ir vairāki uzdevumi - jaunu failu un funkciju veidošana, funkciju pārveidošana un uzlabošana utml. Atsevišķu uzdevumu izpilde var izraisīt kļūdas vai nepilnības projekta darbībā, līdz ir pabeigti visi posma uzdevumi.
 
 Sīkāk par posmiem un uzdevumiem skatīties [UZDEVUMI](UZDEVUMI.md)
+
+# Funkcionalitātes idejas
+
+- [ ] lasīt ziņas
+- [ ] sūtīt ziņu kā *Viesis*
+- [ ] /vards *jauns_vards* - mainīt vārdu
+- [ ] redzēt sūtītāja vārdu visām ziņām
+- [ ] redzēt sūtīšanas laiku visām ziņām
+- [ ] /palidziba - izdrukā visas pieejamās komandas
+- [ ] /versija - rāda čata versiju
+- [ ] /ping - parāda *latency* uz serveri
+- [ ] /uptime - cik ilgi serveris strādā
+- [ ] /stats - kaut kāda statistika par ziņām/dalībniekiem
+- [ ] /joks - ģenerē joku no ārēja / iekšēja resursa
+- [ ] /joks2 - ģenerē joku no API
+- [ ] /vardi - parāda lietotāju sarakstu
+- [ ] /poke *cita_vards* - pievērst kāda lietotāja uzmanību
+- [ ] /joks *cita_vards* - pastāstīt kādam (vai par kādu) joku
+- [ ] /dati *vards* - statistika par konkrētu lietotāju
+- [ ] /auu - sūta uzmanību pievērsošu ziņu
+- [ ] /bilde *link* - parāda attēlu no linka
+- [ ] /mute /ignore /limit - prespama aizsardzība
+- [ ] Limitēt ziņas garumu uz 280 simboliem
+- [ ] limitēt *Viesu* sūtito ziņu biežumu
+- [ ] skaņas efekts pie jaunas ziņas
