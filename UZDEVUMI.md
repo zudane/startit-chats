@@ -10,11 +10,11 @@
 - **0.7-versiju-parbaude** - jauna funkcionalitāte - servera un klienta versiju sakritības pārbaude
 - **0.8-chata-laika-zimogs** - jauna funkcionalitāte - laika zīmogs ziņām
 
-## Uzdevumi pa posmiem
+# Uzdevumi pa posmiem
 
-### 0.1 - Sākums
+## 0.1 - Sākums
 
-Ņemot par paraugu esošo projektu izveidot mapju un failu struktūru Flask projektam, kas izmanto HTML templates
+Ņemot par paraugu esošo projektu, izveidot mapju un failu struktūru Flask projektam, kas izmanto HTML templates
 
 1. Izveido Flask izmantoto mapju struktūru: `templates` un `static` mapes
 1. Izveido pamata template failu `index.html` template mapē
@@ -23,4 +23,16 @@
 1. Pievieno jaunu import `render_template`
 1. Pievieno servera monitorēšanas route /health, kas atbild ar "OK"
 1. Pārbauda darbību palaižot un atverot <http://127.0.0.1:5000/> un <http://127.0.0.1:5000/health> adreses
+
+## 0.2 - Servera puses pamata funkcionalitāte
+
+Turpinot iepriekšējā posmā paveikto, pievienot servera pusē čata pamata funkcionalitāti - iespēju saņemt esošu čata tekstu, kā arī pievienot jaunu čata tekstu. Funkcionalitātes nodrošināšanai čata tekstu nepieciešams ierakstīt logfailā.
+
+1. Izveido divas jaunas routes - `/chats/sanjemt` un `/chats/suutit` ar attiecīgam funkcijām.
+1. Izveido chata logfailu `chats.log`, kurā ieraksta dažas rindiņas ar tekstu (turpmāk vienu chata rindiņu sauksim par *ziņu*)
+1. Izveido jaunu Python failu `chats.py`, kurā raksta funkcijas `ielasit_chatu` un `ierakstit_zinju`
+1. `ielasit_chatu` jāatver chata logfails, jāielasa saturs un jāpārveido json. Izsauc šo funkciju no routes **/chats/sanjemt**
+1. Pārbauda darbību caur Developer Tools vai Postman
+1. `ierakstit_zinju` jāatver chata logfails un jāpievieno jauna rindiņa.Izsauc šo funkciju no routes **/chats/suutit**
+1. Pārbauda darbību caur Developer Tools vai Postman
 
