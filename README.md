@@ -11,8 +11,8 @@ Projekta mērķis ir pamazām izveidot webčata aplikāciju, kurā būtu realiz�
 1. Lai darbinātu un pārbauditu lokāli nepieciešama izstrādes vide ar Python 3 (un pip) un git atbalstu
 1. Lai darbinātu citiem pieejamā veidā nepieciešams Heroku projekts, kas savienots ar GitHub repozitoriju, skat. [KAA-HEROKU](KAA-HEROKU.md)
 1. Alternatīvi iepriekšējam punktam - pastāvīgi strādājošs serveris ar Interneta pieeju, publisku IP adresi un Python 3, piemēram:
-  - repl.it projekts (skat. komentārus beigās)
-  - personīgais/skolas serveris
+   - repl.it projekts (skat. komentārus beigās)
+   - personīgais/skolas serveris
 
 ## Mācību process
 
