@@ -1,12 +1,10 @@
-from flask import Flask, render_template, json, request
-
-import chats
+from flask import Flask, json, jsonify, render_template, request
 
 app = Flask('app')
 
 
 @app.route('/')
-def index_page():
+def index_lapa():
   return render_template('index.html')
 
 
@@ -15,17 +13,24 @@ def health_check():
   return "OK"
 
 
-@app.route('/chat/read')
-def return_chat():
-  return chats.get_chat()
+@app.route('/chats/lasi')
+def ielasit_chatu():
+  chata_rindas = []
+  with open("chats.txt", "r") as f:
+    for rinda in f:
+      chata_rindas.append(rinda)
+  return jsonify({"chats": chata_rindas})
 
 
-@app.route('/chat/send', methods=['POST'])
-def receive_message():
-  data = request.data
-  msg = json.loads(data)
-  chats.add_message(msg['message'])
-  return chats.get_chat()
+@app.route('/chats/suuti', methods=['POST'])
+def suutiit_zinju():
+  dati = request.data
+  json_dati = json.loads(dati)
+  
+  with open("chats.txt", "a", newline="") as f:
+    f.write(json_dati["chats"] + "\n")
+
+  return ielasit_chatu()
   
 
 if __name__ == '__main__':
