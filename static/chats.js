@@ -32,7 +32,7 @@ async function suutiZinju(){
         body: JSON.stringify({"chats": zinja})
           
         });
-    const datuObjekts = await atlide.json();
+    const datuObjekts = await atbilde.json();
 
     raadiChatuVienkarsi(datuObjekts);
 }
