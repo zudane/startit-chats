@@ -5,7 +5,7 @@ app = Flask('app')
 
 @app.route('/')
 def index_lapa():
-  return render_template('index.html')
+  return render_template('chats.html')
 
 
 @app.route('/health')
@@ -24,11 +24,10 @@ def ielasit_chatu():
 
 @app.route('/chats/suuti', methods=['POST'])
 def suutiit_zinju():
-  dati = request.data
-  json_dati = json.loads(dati)
+  dati = request.json
   
   with open("chats.txt", "a", newline="") as f:
-    f.write(json_dati["chats"] + "\n")
+    f.write(dati["chats"] + "\n")
 
   return ielasit_chatu()
   
