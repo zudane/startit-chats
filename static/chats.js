@@ -1,4 +1,4 @@
-const ATJAUNOT = 50000;
+const ATJAUNOT = 1000;
 const VERSIJA = "0.5"
 var vards = "Viesis"
 
