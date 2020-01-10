@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_templates
 app = Flask('app')
 @app.route('/')
 def index_page():
