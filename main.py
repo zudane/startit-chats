@@ -22,7 +22,7 @@ def ielasit_chatu():
 @app.route('/chats/suuti', methods = ['POST'])
 def suutu_zinju():
   dati=request.json
-  with open("chats.txt", "ra", newline=" ") as f:
+  with open("chats.txt", "a", newline=" ") as f:
     f.write(dati["chats"] + "\n")
       
   return jsonify({"chats":chata_rindas})
