@@ -27,7 +27,7 @@ async function suutiZinju(){
     const atbilde = await fetch('/chats/suuti', {
         method: 'POST',
         headers: {
-            'Content-Type': 'appliccation/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({"chats": zinja})
           
