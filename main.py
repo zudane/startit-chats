@@ -11,10 +11,10 @@ def health_check():
   return "OK"
 
 @app.route("/chats/lasi")
-del ielasit_chatu():
+def ielasit_chatu():
   chata_rindas = []
-  with open("chats.txt", "r") as f:
-    for rina in f:
+  with open("chats.txt", "r", encoding="UTF-8") as f:
+    for rinda in f:
       chata_rindas.append(rinda)
 
 return jsonify({"chats":chata_rindas})
