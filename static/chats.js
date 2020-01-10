@@ -1,5 +1,78 @@
 const ATJAUNOT = 50000;
-const VERSIJA = "0.4"
+const VERSIJA = "0.5"
+var vards = "Viesis"
+
+
+/*
+Klase, kas satur visu chata saturu, struktūru un metainformāciju
+Inicializē ar no servera atgriezto json objektu
+Un veic dažas vienkāršas pārbaudes
+*/
+class Chats {
+  constructor(dati) {
+    this.vards = vards;
+    this.zinjas = [];
+
+    // pārbaudām vai ir vispār kāda jau esoša ziņa
+    // ja nav, parādām paziņojumu (tikai lokāli!)
+    if (dati.chats.length == 0) {
+      this.zinjas = [new Zinja("Pārlūkprogramma", "Čatā pašlaik ziņu nav, uzrakstiet kaut ko!")];
+    }
+
+    // no atsūtītajiem datiem izveidojam masīvu ar zinju objektiem
+    for (const rinda of dati.chats) {
+      const zinja = new Zinja(rinda.vards, rinda.zinja);
+      this.add(zinja);
+    }
+  }
+
+  add(zinja) {
+    this.zinjas.push(zinja);
+  }
+
+  raadiChataRindas() {
+    const chatUL = document.getElementById("chats");
+    // novaacam ieprieksheejo saturu
+    while (chatUL.firstChild) {
+        chatUL.firstChild.remove();
+    }
+    // pievienojam visas zinjas
+    for (const zinja of this.zinjas) {
+      let chatLI = zinja.formateRindu();
+      chatUL.appendChild(chatLI);
+    }
+    // noskrolleejam uz leju pie peedeejaa chata texta
+    var chatScrollBox = chatUL.parentNode;
+    chatScrollBox.scrollTop = chatScrollBox.scrollHeight;
+  }
+}
+
+/*
+Klase, kas satur visu vienas ziņas saturu, struktūru un metainformāciju
+Inicializē ar no servera atgrieztā json objekta vienu rindu
+*/
+class Zinja {
+  constructor(vards, zinja) {
+    this.vards = vards;
+    this.zinja = zinja;
+  }
+
+  formateRindu() {
+    const LIclassName = "left clearfix";
+    const newDivclassName = "chat-body clearfix";
+    
+    let newLI = document.createElement("li");
+    newLI.className = LIclassName;
+    let newDiv = document.createElement("div"); 
+    newDiv.className = newDivclassName;
+    let teksts = this.vards + ": " + this.zinja;
+    let newContent = document.createTextNode(teksts); 
+    newLI.appendChild(newDiv); 
+    newDiv.appendChild(newContent); 
+    return newLI;
+  }
+}
+
 
 /*
 Ielādē tērzēšanas datus no servera
@@ -8,49 +81,11 @@ Uzstāda laiku pēc kāda atkārtoti izsaukt šo pašu funkciju
 async function lasiChatu() {
     const atbilde = await fetch('/chats/lasi');
     const datuObjekts = await atbilde.json();
-    raadiChataRindas(datuObjekts);
+    let dati = new Chats(datuObjekts);
+    dati.raadiChataRindas();
     await new Promise(resolve => setTimeout(resolve, ATJAUNOT));
     await lasiChatu();
 }
-
-
-function raadiChatuVienkarsi(dati) {
-    var jaunaRinda = "<br/>";
-    var chats = "";
-    var chataDiv = document.getElementById("chats");
-    for (var rinda of dati["chats"]) {
-        chats = chats + rinda + jaunaRinda;
-    }
-    chataDiv.innerHTML = chats;
-}
-
-
-function raadiChataRindas(dati) {
-    const chatUL = document.getElementById("chats");
-    // novaacam ieprieksheejo saturu
-    while (chatUL.firstChild) {
-        chatUL.firstChild.remove();
-    }
-    for (let rinda of dati["chats"]) {
-      chatLI = izveidoJaunuRindu(rinda);
-      chatUL.appendChild(chatLI);
-    }
-    // noskrolleejam uz leju pie peedeejaa chata texta
-    var chatScrollBox = chatUL.parentNode;
-    chatScrollBox.scrollTop = chatScrollBox.scrollHeight;
-  }
-  
-  
-  function izveidoJaunuRindu(zinja) { 
-    let newLI = document.createElement("li");
-    newLI.className = "left clearfix"
-    let newDiv = document.createElement("div"); 
-    newDiv.className = "chat-body clearfix"
-    let newContent = document.createTextNode(zinja); 
-    newLI.appendChild(newDiv); 
-    newDiv.appendChild(newContent); 
-    return newLI;
-  }
 
 
 /*
@@ -66,21 +101,24 @@ async function suutiZinju() {
 
         // izdzēš ievades lauku
         zinjasElements.value = "";
+        // izveido jaunu chata rindinju no vārda, ziņas utml datiem
+        const rinda = new Zinja(vards, zinja)
 
         const atbilde = await fetch('/chats/suuti', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "chats": zinja })
+            body: JSON.stringify({ "chats": rinda })
         });
         const datuObjekts = await atbilde.json();
+
         // parāda jauno chata saturu
-        raadiChataRindas(datuObjekts);
+        let dati = new Chats(datuObjekts);
+        dati.raadiChataRindas();
     } else {
         console.log("Tukšu ziņu nesūtām uz serveri")
     }
-
 }
 
 

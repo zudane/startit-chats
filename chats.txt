@@ -1,3 +1,1 @@
-Sveicieni no StartIT
-Otra rinda
-Liekam jaunu ziņu iekšā
+{"vards": "Serveris", "zinja": "Sākam jaunu, skaistu dzīvi!"}

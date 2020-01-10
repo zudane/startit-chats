@@ -1,4 +1,6 @@
 from flask import Flask, json, jsonify, render_template, request
+import chats
+
 
 app = Flask('app')
 
@@ -15,21 +17,16 @@ def health_check():
 
 @app.route('/chats/lasi')
 def ielasit_chatu():
-  chata_rindas = []
-  with open("chats.txt", "r") as f:
-    for rinda in f:
-      chata_rindas.append(rinda)
-  return jsonify({"chats": chata_rindas})
+  return chats.lasi()
 
 
 @app.route('/chats/suuti', methods=['POST'])
 def suutiit_zinju():
   dati = request.json
   
-  with open("chats.txt", "a", newline="") as f:
-    f.write(dati["chats"] + "\n")
+  chats.pieraksti_zinju(dati)
 
-  return ielasit_chatu()
+  return chats.lasi()
   
 
 if __name__ == '__main__':
