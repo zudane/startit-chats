@@ -94,10 +94,14 @@ Publicē tērzēšanas ziņas datus uz serveri
 async function suutiZinju() {
     // Nolasa ievades lauka saturu
     let zinjasElements = document.getElementById("zinja");
-    const zinja = zinjasElements.value;
+    let zinja = zinjasElements.value;
 
     // pārbaudām vai ir vispār kaut kas ierakstīts
     if (zinja.length > 0) {
+
+        if (zinja.startsWith("/")) {
+            zinja = saprotiKomandu(zinja);
+        }
 
         // izdzēš ievades lauku
         zinjasElements.value = "";
@@ -119,6 +123,48 @@ async function suutiZinju() {
     } else {
         console.log("Tukšu ziņu nesūtām uz serveri")
     }
+}
+
+
+function saprotiKomandu(teksts) {
+  let vardi = teksts.split(" ");
+  let komanda = vardi[0];
+  let zinja;
+  switch (komanda) {
+    case "/vards":
+    case "/vaards":
+      if (vardi.length < 2) {
+        zinja = "Norādi jauno vārdu, piemēram: /vards MansJaunaisVards"
+      } else {
+        zinja = uzstadiVaardu(vardi[1]);
+      }
+      break;
+    case "/versija":
+    case "/v":
+      zinja = "Javascript versija: " + VERSIJA;
+      break;
+    case "/paliigaa":
+    case "/paliga":
+    case "/help":
+    case "/?":
+    default:
+      zinja = paradiPalidzibu();
+      break;
+  }
+  return zinja;
+}
+
+
+function uzstadiVaardu(jaunaisVards) {
+  let vecaisVards = vards;
+  vards = jaunaisVards;
+  let teksts = vecaisVards + " kļuva par " + vards;
+  return teksts;
+}
+
+
+function paradiPalidzibu() {
+  return 'Pieejamās komandas : "/vards JaunaisVards", "/palidziba", "/versija"'
 }
 
 
