@@ -6,9 +6,8 @@
 - **0.3-klienta-puse** - vienkāršu chata rindu lasīšanas/raksīšanas funkcionalitāte klienta (pārlūkprogrammas) pusē (HTML/Javascript)
 - **0.4-klienta-izskata-uzlabojumi** - chata izskata uzlabojumi (HTML/CSS)
 - **0.5-oop-modelis** - refaktorēšana uz OOP modeli
-- **0.6-komandas-un-varda-nomaina** - jauna funkcionalitāte servera un klienta pusē - komandu apstrāde, konkrēti - iespēja nomainīt vārdu un izdrukāt palīdzību
-- **0.7-versiju-parbaude** - jauna funkcionalitāte - servera un klienta versiju sakritības pārbaude
-- **0.8-chata-laika-zimogs** - jauna funkcionalitāte - laika zīmogs ziņām
+- **0.6-komandas** - jauna funkcionalitāte servera un klienta pusē - komandu apstrāde, konkrēti - iespēja nomainīt vārdu un izdrukāt palīdzību
+- **0.7-laika-zimogs** - jauna funkcionalitāte - laika zīmogs ziņām
 
 ## Uzdevumi pa posmiem
 
@@ -106,3 +105,8 @@ Papildinot iepriekšējo posmu, pievienosim chata komandas.
 
 - Izveido funkciju `saprotiKomandu`, kas apstrādā ievades ziņu, pārbauda vai tā sākas ar komandas simbolu, piemēram "/", un tad izpilda komandu, nevis vienkārši izvada ziņu
 - Pirms ziņas sūtīšanas uz serveri izsauc izveidoto funkciju
+
+## 0.7 Laika zīmogs
+
+- Pievieno jaunu parametru `chats.py`, kas pievieno jaunai chata rindai tās izveidošanas laiku
+- `chats.js` pievieno jauno parametru `Zinja` klases inicializatoram un `formateRindu` metodei.
