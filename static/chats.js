@@ -1,4 +1,4 @@
-const ATJAUNOT =500;
+const ATJAUNOT = 5000;
 
 async function lasiChatu(){
     const atbilde = await fetch('/chats/lasi');
@@ -30,10 +30,9 @@ async function suutiZinju(){
             'Content-Type': 'appliccation/json'
         },
         body: JSON.stringify({"chats": zinja})
+          
+        });
+    const datuObjekts = await atlide.json();
 
-    
-    });
-    const datuObjekts = atlide.json();
-    
     raadiChatuVienkarsi(datuObjekts);
 }
