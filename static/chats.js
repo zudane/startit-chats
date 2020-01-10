@@ -42,8 +42,8 @@ function raadiChataRindas(dati) {
     while (chatUL.firstChild) {
         chatUL.firstChild.remove();
     }
-    for (let rinda of dati["messages"]) {
-      chatLI = izveidoJaunuRindu(rinda.message);
+    for (let rinda of dati["chats"]) {
+      chatLI = izveidoJaunuRindu(rinda);
       chatUL.appendChild(chatLI);
     }
     // noskrolleejam uz leju pie peedeejaa chata texta
