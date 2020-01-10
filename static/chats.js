@@ -9,7 +9,7 @@ async function lasiChatu(){
 }
 
 function raadiChatuVienkarsi(dati){
-    const jaunaRinda = "</br>"
+    const jaunaRinda = "<br />"
     let chats = "";
     let chataDiv = document.getElementById("chats");
 
@@ -19,9 +19,8 @@ function raadiChatuVienkarsi(dati){
     chataDiv.innerHTML = chats;
 }
 async function suutiZinju(){
-    let zinjasElements = document.getElementById('zinja');
+    let zinjasElements = document.getElementById("zinja");
     let zinja = zinjasElements.value;
-
     zinjasElements.value = "";
 
     const atbilde = await fetch('/chats/suuti', {
@@ -31,8 +30,10 @@ async function suutiZinju(){
         },
         body: JSON.stringify({"chats": zinja})
           
-        });
+    });
     const datuObjekts = await atbilde.json();
-
     raadiChatuVienkarsi(datuObjekts);
+}
+function raadiChatu(){
+
 }
